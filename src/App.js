@@ -39,6 +39,9 @@ class App extends Component {
     provinceState,
     country,
     summary,
+    restroom,
+    water,
+    food
     ) => {
       //pushing to firebase
     dbRef.push({
@@ -46,6 +49,9 @@ class App extends Component {
       provinceState: provinceState,
       country: country,
       summary: summary,
+      restroom: restroom,
+      water: water,
+      food: food
     });
   };
 
@@ -60,17 +66,7 @@ class App extends Component {
       </section>
       <section className="reviewSetion">
         <Reviews allReviews={this.state.allReviews}/>
-        {/* {this.state.allReviews.map((review) => {
-          console.log(review)
-          return (
-          <div className="review"  key={review[0]}>
-            <h4>{review[1].provinceState}</h4>
-            <h4>{review[1].country}</h4>
-            <p>{review[1].summary}</p>
-            <button>likes - </button>
-          </div>
-          )
-        })} */}
+  
       </section>
   
 

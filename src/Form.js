@@ -11,9 +11,9 @@ class Form extends Component {
          provinceState: "",
          country: "",
          summary: "",
-         // restroom: false,
-         // water: false,
-         // vendingMachine: false
+         restroom: false,
+         water: false,
+         food: false
       }
    }
 
@@ -32,20 +32,20 @@ class Form extends Component {
          this.state.provinceState,
          this.state.country,
          this.state.summary,
-         // this.state.restroom,
-         // this.state.water,
-         // this.state.vendingMachine,
+         this.state.restroom,
+         this.state.water,
+         this.state.food,
       );
 
       //clearing state after submit
-      //DOES NOT WORK
+   
       this.setState({
          provinceState: "",
          country: "",
          summary: "",  
-         // restroom: false,
-         // water: false,
-         // vendingMachine: false, 
+         restroom: false,
+         water: false,
+         food: false 
       });
    };
 
@@ -53,14 +53,40 @@ class Form extends Component {
       this.setState({
          [e.target.id]: e.target.value
       });
-      // console.log(this.state)
    };
+
+   onFormChange = (e) => {
+    // In my example all form values are stored in a state property 'model'
+    let restroom = this.state.restroom;
+
+      if (e.target.type == 'checkbox') {
+
+      if (restroom[e.target.name] === false) {
+         restroom[e.target.name] = true;
+      } else if (restroom[e.target.name] === true) {
+         restroom[e.target.name] = false;
+      } else {
+         // if the property has not be defined yet it should be true
+         restroom[e.target.name] = true;
+      }
+      } else {
+         restroom[e.target.name] = e.target.value;
+      }
+
+      // Update the state
+      this.setState({
+         restroom: restroom
+      });
+      console.log(this.state.restroom)
+   }
+
+   
 
    render() {
       return (
          <div>
             <h2>You got a Review for us?</h2>
-            <form action="" 
+            <form className="reviewForm" action="" 
             onSubmit={this.handleSubmit}>
                <label htmlFor="provinceState">Province/State</label>
                <input 
@@ -82,6 +108,33 @@ class Form extends Component {
                onChange={this.handleChange} 
                id="summary" cols="50" rows="8"></textarea>
 
+               <div className="toggleSection">
+                  <div className="toggle">
+                     <p>Restroon:</p>
+                     <label htmlFor="restroom"></label>
+                     <input type="checkbox" name="false" id="toggleRestroom" value={this.restroom}
+                     onChange={this.onFormChange} />
+                     
+                  </div>
+
+                  <div className="toggle">
+                     <p>Water:</p>
+                     <label htmlFor="yesWater">Yes</label>
+                     <input type="radio" name="water" id="yesWater" value={this.water} />
+                     <label htmlFor="noWater">No</label>
+                     <input type="radio" name="water" id="noWater" value={this.water}/>
+                  </div>
+
+                  <div className="toggle">
+                     <p>Food:</p>
+                     <label htmlFor="yesFood">Yes</label>
+                     <input type="radio" name="food" id="yesFood" value={this.water} />
+                     <label htmlFor="noFood">No</label>
+                     <input type="radio" name="food" id="noFood" value={this.water} />
+                  </div>
+
+               </div>
+   
                <input type="submit" value="submit"/>
             </form>
          </div>
