@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("MOUNT TEST LOL")
+    // console.log("MOUNT TEST LOL")
     //attach event listener to firebase
     dbRef.on("value", (snapshot) => {
       //turning database into variable

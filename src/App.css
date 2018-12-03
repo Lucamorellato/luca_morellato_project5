@@ -215,6 +215,22 @@ input[type=checkbox]:checked + .cover{
   background: #6a5dbf;
 } 
 
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 5px;
+  background-color: #1600a4;
+  font-size: 1.4rem;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+.swal-text {
+  font-size: 2rem;
+}
+
+.swal-button:hover {
+  background: #6a5dbf;
+}
+
 
 
 
@@ -276,7 +292,6 @@ input:placeholder-shown{
   flex-direction: column;
   justify-content: center;
   margin: 40px 0;
-  /* box-shadow: 0px 0px 5px rgba(123, 123, 123, 0.598); */
   border-radius: 10px;
   background: #efeff2;
 }
@@ -337,8 +352,7 @@ input:placeholder-shown{
   padding: 5px;
   margin: 20px 0;
 }
-
-
+/* end of review card */
 
 
 /* /* MEDIA =============================== MEDIA */
@@ -416,10 +430,12 @@ input:placeholder-shown{
     transition: background .2s;
   }
 }
+
+/* TABLET QUERY */
 @media only screen and (min-width: 900px) {
   .reviewColumn {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -429,6 +445,7 @@ input:placeholder-shown{
   }
 }
 
+/* SORT OF BIG MEDIA QUERY */
 @media only screen and (min-width: 1000px) {
   .wrapper {
     width: 80%;
@@ -468,6 +485,7 @@ input:placeholder-shown{
 
 }
 
+/* BIG MEDIA QUERRY */
 @media only screen and (min-width: 1400px) {
   .cover {
     right: 30%;

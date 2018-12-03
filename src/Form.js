@@ -3,12 +3,6 @@ import Popup from 'reactjs-popup';
 import swal from 'sweetalert';
 
 
-
-//component IMPORT
-import Modal from "./Modal";
-
-
-
 class Form extends Component {
    constructor() {
       super();
@@ -38,7 +32,7 @@ class Form extends Component {
          this.state.food,
          this.state.water,
       );
-
+      //sweet alert to confirm user submit
       swal("Review Submitted");
       // clearing state after submit
       this.setState({
@@ -52,7 +46,7 @@ class Form extends Component {
 
    };
 
-   //clearing state to clear form
+   //clearing state to clear form when user selects Cancel
    clearForm = (e) => {
       this.setState({
          name: "",
@@ -82,7 +76,7 @@ class Form extends Component {
       this.setState({
          [name]: value
       });
-      
+   
       //this takes current state, and returns the opposite THIS WORKS I JUST DO NOT UNDERSTAND HOW TO MAKE IT GLOBAL
       // const value = target.checked;
       // this.setState(function (currentState) {
@@ -119,17 +113,17 @@ class Form extends Component {
 
                         <label className="inputLabel" htmlFor="summary">How Was it? <span className="labelSpan">200 word limit</span></label>
                         <textarea
-                         
                            maxLength="425"
                            value={this.state.summary}
                            onChange={this.handleChange}
-                           id="summary" cols="50" rows="6" ></textarea>
+                           id="summary" cols="50" rows="6" >
+                        </textarea>
 
 
                         <div className="toggleSection">
 
                          
-                        <label checked="checked" className="toggleLabel" htmlFor="restroom">
+                        <label className="toggleLabel" htmlFor="restroom">
                                  <input className="switch" type="checkbox" name="restroom"
                                  onChange={this.onCheckChange}
                                  checked={this.state.restroom} />
@@ -156,7 +150,7 @@ class Form extends Component {
                         <div className="formButtons">
                            <input className="cancel" type="Reset" defaultValue="Clear" 
                            onClick={this.clearForm}/>
-                           <input className="submit" type="submit" defaultValue="submit"
+                           <input className="submit" type="submit" 
                            value="Submit Review"/>
                         </div>
                      </form>
