@@ -142,6 +142,7 @@ textarea:focus {
   outline-style: solid;
   outline-width: 2px;
   outline-color: #1600a4;
+  background: #ffbc1d;
 }
 
 .toggleSection {
@@ -165,6 +166,9 @@ textarea:focus {
 input[type=checkbox]:checked + .cover{
   background: #1600a4;
   color: white;
+}
+input[type=checkbox]:focus + .cover{
+  box-shadow: 0px 0px 15px#ffbc1d;
 }
 .toggleLabel {
   position: relative;
@@ -209,14 +213,14 @@ input[type=checkbox]:checked + .cover{
   width: 100px;
 }
 .formButtons .cancel:hover {
-  background: #797979;
+  background: #ffbc1d;
 }
 .formButtons .submit {
   background: #1600a4;
   width: 150px;
 }
-.formButtons .submit:hover {
-  background: #6a5dbf;
+.formButtons .submit:hover, .formButtons .submit:focus {
+  background: #ffbc1d;
 } 
 
 .swal-button {
@@ -257,6 +261,10 @@ h2 {
   display: none;
 }
 
+input[type=checkbox]:focus + .filterCover {
+  box-shadow: 0px 0px 10px#ffbc1d;
+}
+
 .filters input[type=checkbox]{
   cursor: pointer;
   width: 150px;
@@ -287,6 +295,7 @@ input[type=checkbox]:checked + .filterCover{
 }
 input:focus {
   background: #ffbc1d;
+  outline: none;
 }
 input:placeholder-shown{
   font-style: italic;

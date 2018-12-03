@@ -64,6 +64,11 @@ class Form extends Component {
       });
    };
 
+   //made this to prevent FIRST ANCHOR on header from loading new page. EXISTS solely to prevent default
+   onClickHandle = e => {
+      e.preventDefault();
+   }
+
    //function that listens for change to the checkboxes
    onCheckChange = (e) => {
       //creates variable of which one is selected
@@ -87,7 +92,7 @@ class Form extends Component {
 
    render() {
       return (
-            <Popup trigger={<a href="" className="button"> Add a Review </a>} modal>
+            <Popup trigger={<a href="#" className="button" onClick={this.onClickHandle}> Add a Review </a>} modal>
                {close => (
                   // <div className="modal">
                      <div className="content">
@@ -123,28 +128,26 @@ class Form extends Component {
                         <div className="toggleSection">
 
                          
-                        <label className="toggleLabel" htmlFor="restroom">
+                           <label className="toggleLabel" htmlFor="restroom">
                                  <input className="switch" type="checkbox" name="restroom"
                                  onChange={this.onCheckChange}
                                  checked={this.state.restroom} />
                                  <span className="cover">Restroom</span>
                            </label>
                            
-                              <label className="toggleLabel" htmlFor="food">
-                                 <input className="switch" type="checkbox" name="food"
-                                 onChange={this.onCheckChange}
-                                 checked={this.state.food} />
-                                 <span className="cover">Food</span>
-                              </label>
+                           <label className="toggleLabel" htmlFor="food">
+                              <input className="switch" type="checkbox" name="food"
+                              onChange={this.onCheckChange}
+                              checked={this.state.food} />
+                              <span className="cover">Food</span>
+                           </label>
 
-
-
-                              <label className="toggleLabel" htmlFor="food">
-                                 <input className="switch" type="checkbox" name="water"
-                                 onChange={this.onCheckChange}
-                                 checked={this.state.water} />
-                                 <span className="cover">Water</span>
-                              </label>
+                           <label className="toggleLabel" htmlFor="food">
+                              <input className="switch" type="checkbox" name="water"
+                              onChange={this.onCheckChange}
+                              checked={this.state.water} />
+                              <span className="cover">Water</span>
+                           </label>
 
                         </div>
                         <div className="formButtons">
