@@ -87,7 +87,7 @@ class Form extends Component {
 
    render() {
       return (
-            <Popup trigger={<a className="button"> Add a Review </a>} modal>
+            <Popup trigger={<a href="" className="button"> Add a Review </a>} modal>
                {close => (
                   // <div className="modal">
                      <div className="content">

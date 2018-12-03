@@ -158,6 +158,9 @@ textarea:focus {
   width: 100%;
   opacity: 0;
 }
+.toggleSection input[type=checkbox]:focus {
+  color: red;
+}
 
 input[type=checkbox]:checked + .cover{
   background: #1600a4;
@@ -182,6 +185,7 @@ input[type=checkbox]:checked + .cover{
   top: 20%;
   pointer-events: none;
 }
+
 
 .formButtons {
   padding: 10px 0 5px 0;
@@ -281,6 +285,9 @@ input[type=checkbox]:checked + .filterCover{
   color: #1600a4;
 
 }
+input:focus {
+  background: #ffbc1d;
+}
 input:placeholder-shown{
   font-style: italic;
   color: black;
@@ -321,6 +328,9 @@ input:placeholder-shown{
 .likeSpan {
   display: flex;
   align-items: center;
+}
+button:focus {
+  background: #ffbc1d;
 }
 .heart {
   width: 20px;
