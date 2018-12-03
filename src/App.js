@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import firebase from "./firebase";
+import Popup from "reactjs-popup";
 
 //COMPONENTS IMPORTED HERE
 import Form from "./Form";
 import Reviews from "./Reviews"
+
 
 // reference to the root of the database
 const dbRef = firebase.database().ref();
@@ -19,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("MOUNT TEST")
+    console.log("MOUNT TEST LOL")
     //attach event listener to firebase
     dbRef.on("value", (snapshot) => {
       //turning database into variable
@@ -36,41 +38,39 @@ class App extends Component {
 
   //creating a function that will accept parameters of the review. it also pushes the info to firebase and resets the input fiel
   pushFormToFirebase = (
-    provinceState,
-    country,
+    name,
+    location,
     summary,
     restroom,
-    water,
-    food
+    food,
+    water
     ) => {
       //pushing to firebase
     dbRef.push({
       likes: 0,
-      provinceState: provinceState,
-      country: country,
+      name: name,
+      location: location,
       summary: summary,
       restroom: restroom,
-      water: water,
-      food: food
+      food: food,
+      water: water
     });
   };
 
   render() {
     return (
-      <div className="App">
-      <header>
-        <h1>Rest Stop Reviews</h1>
-      </header>
-      <section className="formSection">
-        <Form pushFormToFirebase={this.pushFormToFirebase} />
-      </section>
-      <section className="reviewSetion">
-        <Reviews allReviews={this.state.allReviews}/>
-  
-      </section>
-  
-
-      </div>
+      <>
+          <header id="header">
+            <h1>Rest Stop Reviews</h1>
+            <div className="headerLinks">
+              <Form pushFormToFirebase={this.pushFormToFirebase} />
+              <a href="#reviews">View Reviews</a>
+            </div>
+          </header>
+          <section id="reviews" className="reviewSection wrapper">
+            <Reviews allReviews={this.state.allReviews}/>
+          </section>
+      </>
     );
   }
 }
