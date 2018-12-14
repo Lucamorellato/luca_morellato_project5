@@ -15,13 +15,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-    //  reviewKey: null,
      allReviews: []
     }
   }
 
+  //adding firebaseDatabase to STATE here
   componentDidMount() {
-    // console.log("MOUNT TEST LOL")
     //attach event listener to firebase
     dbRef.on("value", (snapshot) => {
       //turning database into variable
@@ -34,7 +33,6 @@ class App extends Component {
       })
     })
   }
-
 
   //creating a function that will accept parameters of the review. it also pushes the info to firebase and resets the input fiel
   pushFormToFirebase = (
@@ -70,25 +68,12 @@ class App extends Component {
           <section id="reviews" className="reviewSection wrapper">
             <Reviews allReviews={this.state.allReviews}/>
           </section>
+          <footer>
+          <p>© <a target="_blank" href="http://www.lucamorellato.com/">Luca Morellato</a> 2018</p>
+          </footer>
       </>
     );
   }
 }
 
 export default App;
-
-
-
-
-//pageLoad
-
-//render form also render all currently posted reviews in a twitter-esque display
-//declare state as empty strings and default boolean values
-//link radio keys and form to current state values
-//user completes form and checks radio keys and update the state
-//send updated state to firebase saving them
-//STRETCH ---- On submit present a draft of the post for user confirmation to verify no spelling mistakes ----
-//on submit make sure all options are checked if not issue alert
-//on submit clear form if completed properly
-
-//pull info back down from firebase and present on home screen

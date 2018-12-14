@@ -118,7 +118,7 @@ class Form extends Component {
 
                         <label className="inputLabel" htmlFor="summary">How Was it? <span className="labelSpan">200 word limit</span></label>
                         <textarea
-                           maxLength="425"
+                           maxLength="725"
                            value={this.state.summary}
                            onChange={this.handleChange}
                            id="summary" cols="50" rows="6" >

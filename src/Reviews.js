@@ -10,8 +10,17 @@ class Reviews extends Component {
       super();
       this.state = {
          likes: 0,
-         search: ""
+         search: "",
+         restroom: true,
+         food: true,
+         water: true,
+         filterValues: []
       }
+   }
+
+   componentDidUpdate(){
+      this.reviewFilterFunction()
+      this.reviewFilterByButton()
    }
 
    //function to update likes
@@ -19,10 +28,8 @@ class Reviews extends Component {
       event.preventDefault();
       //on click grabbing each obj individual firebase ID (by assigning the firebase key as each buttons KEY= ) and setting as variable 
       let buttonKey = firebase.database().ref(event.target.id)
-      
       //creating variable that grabs obj.likes value and + 1 wrapping it in NUMBER to return it as a number instead of the string that is returning
       let buttonValue = Number(event.target.dataset.likes) + 1
-
       //using .update firebase method to send the buttonvalue variable to the specific obj pressed
       buttonKey.update({
          likes: buttonValue
@@ -34,29 +41,125 @@ class Reviews extends Component {
       this.setState({search: e.target.value.substr(0,15)})
    }
 
-   render(){
+   //function that toggles state depending on which filter buttons user has selected
+   handleFilterToggle = (e) => {
+      //creates variable of which one is selected
+      const target = e.target;
+      //creates var depending on the type of input, if checkbox its value is the state
+      const value = target.type === "checkbox" ? target.checked : target.value;
+       //variable of target name so I can alter which state is selected
+      const name = target.name;
+      //set state of whichever is selected to the value directly linked to the checkbox
+      let toggleArray = Array.from(this.state.filterValues)
+      //check to see if item is in array using index of, if it slice/splice it out
+      
+      
+      //if name is not present in array made from filterValues state, push it in. if not remove it.
+      if (toggleArray.indexOf(name) === -1) {
+         toggleArray.push(name)
+      } else {
+         let indexName = toggleArray.indexOf(name);
+         toggleArray.splice(indexName, 1)
+      }
+      //set it to state as filterValues
+      this.setState({
+         [name]: value,
+         filterValues: toggleArray
+      }, () => {
+         this.reviewFilterToolMapThing()
+      })
+   }
+   
+   reviewFilterToolMapThing = () => {
+      let selectedReviews = []
+      let toggleArray2 = Array.from(this.state.filterValues)
+      let allReviews = this.props.allReviews
+      
+      toggleArray2.map((word)=> {
 
-      //creating var for user search
-      let filteredReviews = this.props.allReviews
+        let selectedReviews = allReviews.filter((review) => {
+            return review[1][word] === true
+            // if(review[1][word] === true){
+            //    selectedReviews.push(review)
+            // } else {
+            //    console.log('no')
+            // }
+         })
+         allReviews = selectedReviews
+      })
+
+      // console.log(toggleArray2)
+      console.log(allReviews)
+      return allReviews
+   }
+   
+
+   //then with this array map array into filter 
+   //You will need to filter through the first condition, and then use THAT SAME NEW ARRAY to filter through the next conditions set it up outside
+
+
+
+   reviewFilterFunction = () =>{
+   //creating var for user search
+      let array = this.props.allReviews
       //filter through array and only display reviews that indexOf location match the search bar. lowercase everything
-      filteredReviews = filteredReviews.filter((review) => {
+      array = array.filter((review) => {
          return review[1].location.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       });
+      return array
+   }
+
+
+   reviewFilterByButton = () => {
+      let buttonArray = this.reviewFilterFunction()
       
+      buttonArray = buttonArray.filter((review) => {
+         return (review[1].food === this.state.toggleFood) && (review[1].water === this.state.toggleWater) && (review[1].restroom === this.state.toggleRestroom)
+      })
+      console.log(buttonArray)
+      return buttonArray
+   }
+
+
+ 
+      // if (this.state.toggleFood === true) {
+      //   const array = array.filter((review) => {
+      //    return review[1].food === true
+      // })
+   
+   //listen for click of one of three filter buttons
+   //on click change state and only render reviews whose respective node match that state?
+   //so basically, default is render ALL, each click limits the render?
+
+   //how do you handle multiple being selected? How do you make default displaying all of them?
+   
+
+   render(){
+      // console.log(this.state.filteredReviews, "STATE TEST IN RENDER")
+      let filteredReviews = this.reviewFilterFunction()
+      filteredReviews = this.reviewFilterToolMapThing()
+      // filteredReviews = this.reviewFilterByButton()
+
       return (
          <>
             <h2>Results</h2>
                <div className="filters">
                   <label className="filterLabel" htmlFor="">
-                     <input className="switch" type="checkbox" name=""/>
+                     <input className="switch" type="checkbox" name="restroom"
+                     onChange={this.handleFilterToggle}
+                     checked={this.state.toggleRestroom}/>
                      <span className="filterCover">Restroom</span>
                   </label>
                   <label className="filterLabel" htmlFor="">
-                     <input className="switch" type="checkbox" name=""/>
+                     <input className="switch" type="checkbox" name="food"
+                     onChange={this.handleFilterToggle}
+                     checked={this.state.toggleFood}/>
                      <span className="filterCover">Food</span>
                   </label>
                   <label className="filterLabel" htmlFor="">
-                     <input className="switch" type="checkbox" name=""/>
+                     <input className="switch" type="checkbox" name="water"
+                     onChange={this.handleFilterToggle}
+                     checked={this.state.toggleWater}/>
                      <span className="filterCover">Water</span>
                   </label>
                </div>

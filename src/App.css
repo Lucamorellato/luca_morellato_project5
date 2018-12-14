@@ -234,6 +234,10 @@ input[type=checkbox]:focus + .cover{
 .swal-text {
   font-size: 2rem;
 }
+.swal-button--cancel{
+  text-color: white;
+
+}
 
 .swal-button:hover {
   background: #6a5dbf;
@@ -331,14 +335,14 @@ input:placeholder-shown{
   padding: 5px;
   background: #efeff2;
 }
-.reviewHeader button:active {
+.reviewHeader button:active, .reviewHeader button:hover {
   color: #ffbc1d;
 }
 .likeSpan {
   display: flex;
   align-items: center;
 }
-button:focus {
+button:focus, {
   background: #ffbc1d;
 }
 .heart {
@@ -372,6 +376,21 @@ button:focus {
   margin: 20px 0;
 }
 /* end of review card */
+/* //footer styles// */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1600a4;
+  background: #ffbc1d;
+}
+footer a{
+  color: #1600a4;
+  /* text-decoration: none; */
+}
+footer a:hover {
+  color: #efeff2;
+}
 
 
 /* /* MEDIA =============================== MEDIA */
