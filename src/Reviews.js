@@ -66,39 +66,31 @@ class Reviews extends Component {
          [name]: value,
          filterValues: toggleArray
       }, () => {
+         //then after setting state, calls function that filters reviews
          this.reviewFilterToolMapThing()
       })
    }
    
+   //function that filters users reviews based on mapping through the user selections I realized it could have all been prepared better, but I made the database store everything as TRUE or FALSE earlier. I now know I'd do this slightly cleaner and fill each object in the array with strings to check .include() of
    reviewFilterToolMapThing = () => {
       let selectedReviews = []
       let toggleArray2 = Array.from(this.state.filterValues)
       let allReviews = this.props.allReviews
-      
+      //map through each 'word' user has selected and put inide filterValues array
       toggleArray2.map((word)=> {
-
+         //then fill an empty local scoped array with the filtered results of ALL reviews, uses the word user has typed to check which option they have selected
         let selectedReviews = allReviews.filter((review) => {
             return review[1][word] === true
-            // if(review[1][word] === true){
-            //    selectedReviews.push(review)
-            // } else {
-            //    console.log('no')
-            // }
          })
+         //set ALL reviews, as the ones they've selected, so that the map and loop don't erase eachother constantly but also so that users can UNDO choices.
          allReviews = selectedReviews
       })
-
-      // console.log(toggleArray2)
-      console.log(allReviews)
+      //return it... so that it is mapped in the render
       return allReviews
    }
    
 
-   //then with this array map array into filter 
-   //You will need to filter through the first condition, and then use THAT SAME NEW ARRAY to filter through the next conditions set it up outside
-
-
-
+   //a function that passes users input in search bar into state to filter through the reviews
    reviewFilterFunction = () =>{
    //creating var for user search
       let array = this.props.allReviews
@@ -143,6 +135,7 @@ class Reviews extends Component {
       return (
          <>
             <h2>Results</h2>
+            <h3>Filter By:</h3>
                <div className="filters">
                   <label className="filterLabel" htmlFor="">
                      <input className="switch" type="checkbox" name="restroom"
@@ -191,11 +184,11 @@ class Reviews extends Component {
                            <h4>{review[1].location}</h4>
                            <div className="iconGallery">
                               
-                              {review[1].restroom ? <img className="icon" alt="this location has a restroom" src={require('./assets/toiletorangee.png')}/> : <img className="icon" alt="this location does not have a restroom" src={require('./assets/toilet.png')}/>}
+                           {review[1].restroom ? <img title="has restroom" className="icon" alt="this location has a restroom" src={require('./assets/toiletorangee.png')} /> : <img title="does not have restroom" className="icon" alt="this location does not have a restroom" src={require('./assets/toilet.png')}/>}
 
-                           {review[1].food ? <img className="icon" alt="this location has food" src={require('./assets/foodorange.png')} /> : <img className="icon" alt="this location does not have food" src={require('./assets/foodgrey.png')}/>}
+                           {review[1].food ? <img title="has food" className="icon" alt="this location has food" src={require('./assets/foodorange.png')} /> : <img title="does not have food"  className="icon" alt="this location does not have food" src={require('./assets/foodgrey.png')}/>}
 
-                           {review[1].water ? <img className="icon" alt="this location has water" src={require('./assets/waterorange.png')} /> : <img className="icon" alt="this location does not have water" src={require('./assets/watergrey.png')}/>}
+                           {review[1].water ? <img title="has water" className="icon" alt="this location has water" src={require('./assets/waterorange.png')} /> : <img title="does not have water" className="icon" alt="this location does not have water" src={require('./assets/watergrey.png')}/>}
                            </div>
                         </div>
                         <p>{review[1].summary}</p> 

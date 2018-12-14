@@ -253,17 +253,40 @@ h2 {
   width: 140px;
   font-size: 4rem;
   font-style: italic;
-  margin: 0 auto 25px auto;
+  margin: 0 auto 35px auto;
   padding-top: 25px;
+}
+h3 {
+  margin: 0 auto;
+  color: #1600a4;
 }
 
 /* filter section styles */
 .filters {
-  display: none;
-}
-.filterCover {
-  display: none;
-}
+    flex-direction: row;
+    width: 75%;
+    height: 60px;
+    margin: 10px auto;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.619); */
+    position: relative;
+  }
+  .filterCover {
+    text-align: center;
+    font-size: 1.8rem;
+    position: absolute;
+    border-radius: 50px;
+    width: 100px;
+    color: #1600a4;
+    border: 1px solid #1600a4;
+    bottom: 15%;
+    padding: 10px 0;
+    pointer-events: none;
+    transition: background .2s;
+  }
 
 input[type=checkbox]:focus + .filterCover {
   box-shadow: 0px 0px 10px#ffbc1d;
@@ -271,7 +294,7 @@ input[type=checkbox]:focus + .filterCover {
 
 .filters input[type=checkbox]{
   cursor: pointer;
-  width: 150px;
+  width: 100px;
   height: 60px;
   opacity: 0;
 }
@@ -394,11 +417,31 @@ footer a:hover {
 
 
 /* /* MEDIA =============================== MEDIA */
+@media only screen and (min-width: 450px) {
+  .filters {
+    justify-content: space-evenly;
+    /* /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.619); */
+    position: relative;
+  }
+  .filterCover {
+    width: 150px;
+  }
+
+  .filters input[type=checkbox]{
+    cursor: pointer;
+    width: 150px;
+    height: 60px;
+    opacity: 0;
+  }
+
+}
+
 @media only screen and (min-width: 700px) {
 
   /* header */
   .wrapper {
     width: 85%;
+    margin: 0 auto;
   }
 
   /* form */
@@ -442,31 +485,10 @@ footer a:hover {
     display: flex;
   }
   /* review section styles */
-  .filters {
-    width: 75%;
-    height: 60px;
-    margin: 50px auto;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.619); */
-    position: relative;
+  .filter {
+
   }
-  .filterCover {
-    display: block;
-    text-align: center;
-    font-size: 1.8rem;
-    position: absolute;
-    border-radius: 50px;
-    width: 150px;
-    color: #1600a4;
-    border: 1px solid #1600a4;
-    bottom: 15%;
-    padding: 10px 0;
-    pointer-events: none;
-    transition: background .2s;
-  }
+  
 }
 
 /* TABLET QUERY */
